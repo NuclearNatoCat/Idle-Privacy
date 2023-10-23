@@ -1,0 +1,2538 @@
+
+<!DOCTYPE html>
+
+<html id="all">
+  
+<head>
+<!-- Meta -->
+<title>Idle Privacy</title>
+<meta name="author" content="Cyan Zebra Programs">
+<meta name="description" content="Idle Privacy is a free-to-play web game with added features for those stuck with spyware.">
+<meta name="color-scheme" content="dark light" />
+<meta charset="utf-8" />
+<link rel="icon" href="/favicon.png" id="favicon2"/>
+
+<!-- Fonts -->
+<link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet'>
+
+<!-- Styles -->
+<style id="root-style">
+:root {
+  --bgColor: white;
+  --textColor: black;
+  --border: 1px solid black;
+  --topTopbarColor: lightgray;
+  --btmTopbarColor: rgb(240, 240, 240);
+  --currentTabColor: lightgray;
+}
+</style>
+<style id="title-screen-text">
+#title-screen {
+  text-align:center;
+}
+#title {
+  font: 150px "VT323", sans-serif;
+  text-shadow: 0px 0px 4px black;
+  padding-top: 9%;
+  padding-bottom:0;
+  margin-bottom:0;
+  cursor: default;
+}
+#subtitle {
+  font: 20px "VT323", sans-serif;
+  text-shadow: 0px 0px 3px black;
+  padding-top: 0;
+  cursor: default;
+  padding-bottom:50px;
+}
+#startbutton {
+  text-align:center;
+  font: 30px "VT323", sans-serif;
+  text-shadow: 0px 0px 3px black;
+  background: white;
+  cursor: pointer;
+  height:40px;
+}
+</style>
+<style id="top-bars">
+#topbar {
+  margin:0;
+  padding:0;
+  width:sub(100%, 1px);
+  background: var(--topTopbarColor);
+  font-size:20px;
+  border:var(--border);
+  color:var(--textColor);
+}
+#topbar-layer2 {
+  margin:0;
+  padding:0;
+  width:sub(100%, 1px);
+  background: var(--btmTopbarColor);
+  border:var(--border);
+  font-size:17px;
+  cursor:default;
+}
+.tab-btn {
+  cursor:pointer;
+  text-shadow:0px 0px 1.5px var(--textColor);
+  color:var(--textColor);
+}
+.tab-btn:hover {
+  text-shadow:0px 0px 4px var(--textColor);
+}
+.count {
+  cursor:default;
+  text-shadow:0px 0px 1.5px var(--textColor);
+  color:var(--textColor);
+}
+.count:hover {
+  text-shadow:0px 0px 4px var(--textColor);
+}
+.right-int {
+  cursor:pointer;
+  float:right;
+}
+</style>
+<style id="element-style">
+* {
+transition-duration: all 0.5s;
+border-color: var(--border);
+font-family:VT323;
+}
+body {
+background-color:var(--bgColor);
+margin:0;
+padding:0;
+color:var(--textColor);
+font-family: VT323;
+}
+span, p, h1, h2, h3 {
+cursor:default;
+transition-duration: 0.5s;
+}
+dialog {
+		background-color:var(--bgColor);
+		border-color:var(--border);
+		color:var(--textColor);
+}
+dialog::backdrop {
+		background-color:rgba(0,0,0,0.75);
+		}
+button {
+		  
+		  border:var(--border);
+		  cursor: pointer;
+		  text-align:center;
+		  display: inline-block;
+		  transition: filter 0.1s, box-shadow 0.5s, text-shadow 0.2s;
+		  text-shadow:inherit;
+      text-shadow: 0px 0px 3px black;
+      background-color:rgba(0,0,0,0.1);
+      font-family: inherit;
+      color:var(--textColor);
+		  
+		}
+button:hover {
+
+		box-shadow: 0px 0px 5px black;
+		filter: brightness(90%);
+		  
+		}
+button:active {
+		
+		  filter: brightness(75%) grayscale(75%);
+		
+		}
+input {
+  font-family: inherit;
+  background: var(--bgColor);
+  border:var(--border);
+  color:var(--textColor);
+  caret-color:var(--textColor);
+}
+input:focus {
+  outline:1px solid var(--textColor);
+}
+input::placeholder {
+  color:var(--textColor);
+}
+select {
+  font-family: inherit;
+  background: var(--bgColor);
+  border-color:var(--border);
+  color:var(--textColor);
+}
+img {
+ width: 20px;
+ height: 20px;
+ border: var(--border);
+}
+br {
+padding:default;
+margin:default;
+}
+code {
+  font-family:Monospace;
+  background:rgba(0,0,0,0.15);
+}
+</style>
+<style id="main-game-styles">
+#gameplay-zone {
+  overflow-y:scroll;
+  overflow-x:none;
+}
+.box4 {
+  height:500px;
+  background:rgba(0, 0, 0, 0.1);
+  width:30vw;
+  border:var(--border);
+  overflow-y:scroll;
+  overflow-x:none;
+  display:inline-block;
+  overflow-wrap:break-word;
+}
+.box3 {
+  height:688px;
+  background:rgba(0, 0, 0, 0.1);
+  width:33.18vw;
+  border:var(--border);
+  overflow-y:scroll;
+  overflow-x:none;
+  float:left;
+  display:block;
+}
+.box2 {
+  height:688px;
+  background:rgba(0, 0, 0, 0.1);
+  width:49.85vw;
+  border:var(--border);
+  overflow-y:scroll;
+  overflow-x:none;
+  float:left;
+  display:block;
+}
+.privBtn {
+  width:100%;
+  height:100%;
+  font-size:10vw;
+  transition-duration: 0.5s;
+}
+.privBtn:hover {
+  background:rgba(0,0,0,0.2);
+}
+.privBtn:active {
+  background:rgba(0,0,0,0.25);
+}
+.half {
+  width:100%;
+  height:50%;
+  font-size:10vw;
+  transition-duration: 0.5s;
+}
+.half:hover {
+  background:rgba(0,0,0,0.2);
+}
+.half:active {
+  background:rgba(0,0,0,0.25);
+}
+.title {
+  padding:5px;
+}
+.center {
+  text-align:center;
+}
+.costText {
+  font-size:2ch;
+}
+.ppcBtn {
+  width:100%;
+  font-size:3ch;
+}
+.ppsBtn {
+  width:100%;
+  font-size:3ch;
+}
+.upgBtn {
+  width:100%;
+  font-size:3ch;
+}
+.upg:has(span#hide) {
+  display:none;
+}
+.upg:has(span#showHalf) {
+  opacity:0.5;
+  pointer-events:none;
+  cursor:not-allowed;
+}
+.upg:has(span#showQuarter) {
+  opacity:0.25;
+  pointer-events:none;
+  cursor:not-allowed;
+}
+.upg:has(span#show) {
+  opacity:1;
+  pointer-events:none;
+  cursor:not-allowed;
+}
+.perkBox {
+  width:9.821vw;
+  text-align:center;
+  height:83.8vh;
+  border:var(--border);
+  background: rgba(0,0,0,0.1);
+  display:block;
+  float:left;
+  transition-duration:0.5s;
+  cursor:pointer;
+}
+.noPerkBox {
+  width:9.821vw;
+  text-align:center;
+  height:83.8vh;
+  border:var(--border);
+  background: rgba(0,0,0,0.1);
+  display:block;
+  float:left;
+  transition-duration:0.5s;
+  cursor:not-allowed;
+}
+.perkBox:hover {
+  box-shadow: 0px 0px 5px black;
+	filter: brightness(75%);
+	background: rgba(0,0,0,0.15);
+}
+#presShop {
+  text-align:center;
+  height:100vh;
+  width:100vw;
+}
+.full {
+  text-align:center;
+  height:100vh;
+  width:100vw;
+}
+.caption {
+  font-size:2ch;
+}
+.left {
+  text-align:left;
+}
+</style>
+<style id="extra-styles">
+  .fullPriv {
+    width: 30vw;
+    height:30vh;
+    border:var(--border);
+    padding:4px;
+    overflow-wrap:break-word;
+    overflow-y:scroll;
+  }
+  .downBtn {
+    width:100vw;
+    font-size:3ch;
+    background:rgba(0,0,0,0.2);
+    border:var(--border);
+  }
+</style>
+<style id="small-screen">
+@media (max-width: 1275px) {
+.box3 {
+  height:681px;
+  background:rgba(0, 0, 0, 0.1);
+  width:32vw;
+  border:var(--border);
+  overflow-y:scroll;
+  overflow-x:none;
+  display:inline-block;
+  margin-bottom:0;
+  float:none;
+}
+.box2 {
+  height:681px;
+  background:rgba(0, 0, 0, 0.1);
+  width:48vw;
+  border:var(--border);
+  overflow-y:scroll;
+  overflow-x:none;
+  display:inline-block;
+  margin-bottom:0;
+  float:none;
+}
+#gameplay-zone {
+  overflow-y:scroll;
+  overflow-x:none;
+  text-align:center;
+}
+}
+</style>
+
+<!-- Status styles(flashing, etc) -->
+<style id="flashing">
+.flashing {
+transition-duration: 2s;
+}
+</style>
+
+</head>
+  
+<body>
+<!-- Edit main stuff here for reupload -->
+<script name="edit-title">
+
+// change the variables to edit title screen
+let title = "Idle Privacy"; // change this to change title screen title
+let subtitle = "A free-to-play web game with added benefits for those stuck with spyware."; // change this to change title screen subtitle
+
+// makes your changes happen when loading site
+document.getElementById("title").innerHTML = title;
+document.getElementById("subtitle").innerHTML = subtitle;
+</script>
+
+<!-- Title screen -->
+<div id="title-screen">
+<h1 id="title">Idle Privacy</h1>
+<h2 id="subtitle">A free-to-play web game with added benefits for those stuck with spyware.</h2>
+<span class="flashing" style="font-size:25px">⪼</span>
+<button id="startbutton" onclick="loadGame()">Start</button>
+<span class="flashing" style="font-size:25px">⪻</span>
+</div>
+
+<!-- Main game screen -->
+<div id="main-game">
+<div id="topbar" style="cursor:default">
+<span id="name-tab"><b>Idle Privacy</b></span>
+|
+<span id="home-btn" class="tab-btn" onclick="loadPage('Home')">Home</span>
+|
+<span id="upgrades-btn" class="tab-btn" onclick="loadPage('Upgrades')">Upgrades</span>
+<span id="perks-btn" class="tab-btn" onclick="loadPage('Perks')"></span>
+|
+<span id="hacks-btn" class="tab-btn" onclick="loadPage('Hacks')">Hacks</span>
+|
+<span id="prestige-btn" class="tab-btn" onclick="loadPage('Prestige')">Prestige</span>
+|
+<span id="settings-btn" class="tab-btn" onclick="loadPage('Settings')">Settings</span>
+<span id="battery" class="right-int" title="Your computer's battery level. Click for more information." onclick="batteryInfo.showModal()">battery here</span>
+<span class="right-int"> </span>
+<span id="time" class="right-int" title="Current time. Click for more information." onclick="dateInfo.showModal()">time here</span>
+</div>
+
+<div id="home">
+<div id="topbar-layer2">
+<span id="name-tab"><b>Home</b></span>
+|
+<span id="priv1" class="count" style="cursor: pointer" onclick="fullPriv.showModal()">privacy</span>
+|
+<span id="ppc1" class="count" style="cursor: pointer" title="Click for more PPC info" onclick="ppcMultiInfo.showModal()">ppc</span>
+|
+<span id="pps1" class="count" title="Click for more PPS info" onclick="ppsProdInfo.showModal()" style="cursor: pointer">pps</span>
+</div>
+<!-- Stuff here -->
+<div id="gameplay-zone">
+<div class="box3">
+  <h2 class="title center">-Buy PPC-related stuff-</h2>
+  <button id="ppcBtn" class="ppcBtn" onclick="buyPpc()">Buy PPC</button>
+  <p class="costText center">Cost: <span id="ppcCost"></span></p>
+  <br>
+  <button id="ppcMultiBtn" class="upgBtn" onclick="buyPpcMulti()">Buy PPC multi</button>
+  <p class="costText center">Cost: <span id="ppcMultiCost"></span></p>
+</div>
+<div class="box3" style="align-text:center">
+  <button onclick="gainPriv()" class="privBtn">------- Gain privacy -------</button>
+</div>
+<div class="box3">
+  <h2 class="title center">-Buy PPS-related stuff-</h2>
+  <button id="ppsBtn" class="ppsBtn" onclick="buyPps()">Buy PPS</button>
+  <p class="costText center">Cost: <span id="ppsCost"></span></p>
+  <br>
+  <button id="ppsProdBtn" class="upgBtn" onclick="buyPpsProd()">Buy PPS producer</button>
+  <p class="costText center">Cost: <span id="ppsProdCost"></span></p>
+</div>
+</div>
+</div>
+
+<div id="upgrades">
+<div id="topbar-layer2">
+<span id="name-tab"><b>Upgrades</b></span>
+|
+<span id="priv2" class="count" style="cursor: pointer" onclick="fullPriv.showModal()">privacy</span>
+|
+<span id="ppc2" class="count" style="cursor: pointer" title="Click for more PPC info" onclick="ppcMultiInfo.showModal()">ppc</span>
+|
+<span id="pps2" class="count" title="Click for more PPS info" onclick="ppsProdInfo.showModal()" style="cursor: pointer">pps</span>
+</div>
+<!-- Stuff here -->
+<div id="gameplay-zone">
+<div class="box3">
+  <h2 class="title center">-PPS/PPC/Privacy-</h2>
+  <div class="upg">
+    <button id="privMultiBtn" class="upgBtn" onclick="buyPriv()">Buy privacy multiplier</button>
+    <p class="costText center">Cost: <span id="privCost"></span></p>
+    <span class="privMulti"></span>
+  </div>
+  <br>
+  <div class="upg">
+  <button id="ppsTimeBtn" class="upgBtn" onclick="buyPpsTime()" tabindex="-1">Buy PPS time reduction</button>
+  <p class="costText center">Cost: <span id="ppsTimeCost"></span></p>
+  <span class="ppsTime"></span>
+  </div>
+</div>
+<div class="box3">
+  <h2 class="title center">-Locks/Keys/Perks-</h2>
+</div>
+<div class="box3">
+  <h2 class="title center">-Other-</h2>
+</div>
+</div>
+</div>
+
+<div id="perks">
+<div id="topbar-layer2">
+<span id="name-tab"><b>Perks</b></span>
+|
+<span id="totalPriv" class="count" style="cursor: pointer" onclick="fullTotalPriv.showModal()">privacy</span>
+|
+<span id="perkMulti" class="count">perk multi</span>
+|
+<span id="perkReqMulti" class="count">perk req</span>
+</div>
+<!-- Stuff here -->
+<div id="gameplay-zone">
+  <div class="box2" style="overflow-y:clip">
+    <div id="noPerk">
+      <h2 class="title center">-No perk available-</h2>
+      <h3 class="center">Privacy required for a perk</h3>
+      <p class="center" id="perkReq1">-</p>
+      <h3 class="center">Out of</h3>
+      <p class="center" id="perkReq2">-</p>
+    </div>
+    <div id="waitPerk">
+      <h2 class="title center flashing">-Perk available!-</h2>
+      <button class="center upgBtn" onclick="loadPerks()">Click here to choose perk(s)</button>
+      <p class="center">Perks available: <span id="perksAvail"></span></p>
+    </div>
+    <div id="selectPerk">
+    <h2 class="title center">-Select new perk-</h2>
+      <div id="commonBox" class="perkBox">
+        <h1>-Common-</h1>
+        <h3 id="commonName">Perk name</h3>
+        <span id="commonDesc">Perk description</span>
+        <br>
+        <br>
+        <span id="commonFx">Perk effects</span>
+        <br>
+        <br>
+        <button class="commonBtn" onclick="usePerk(perk5, perk10, perk15);">Select perk</button>
+      </div>
+      <div id="rareBox" class="perkBox">
+        <h1>-Rare-</h1>
+        <h3 id="rareName">Perk name</h3>
+        <span id="rareDesc">Perk description</span>
+        <br>
+        <br>
+        <span id="rareFx">Perk effects</span>
+        <br>
+        <br>
+        <button class="rareBtn" onclick="usePerk(perk4, perk9, perk14);">Select perk</button>
+      </div>
+      <div id="epicBox" class="perkBox">
+        <h1>-Epic-</h1>
+        <h3 id="epicName">Perk name</h3>
+        <span id="epicDesc">Perk description</span>
+        <br>
+        <br>
+        <span id="epicFx">Perk effects</span>
+        <br>
+        <br>
+        <button class="epicBtn" onclick="usePerk(perk3, perk8, perk13);">Select perk</button>
+      </div>
+      <div id="legendBox" class="perkBox">
+        <h1>-Legend-</h1>
+        <h3 id="legendName">Perk name</h3>
+        <span id="legendDesc">Perk description</span>
+        <br>
+        <br>
+        <span id="legendFx">Perk effects</span>
+        <br>
+        <br>
+        <button class="legendBtn" onclick="usePerk(perk2, perk7, perk12);">Select perk</button>
+      </div>
+      <div id="mysticBox" class="perkBox">
+        <h1>-Mystic-</h1>
+        <h3 id="mysticName">-Perk name-</h3>
+        <span id="mysticDesc">Perk description</span>
+        <br>
+        <br>
+        <span id="mysticFx">Perk effects</span>
+        <br>
+        <br>
+        <button class="mysticBtn" onclick="usePerk(perk1, perk6, perk11);">Select perk</button>
+      </div>
+      
+      <div id="noRareBox" class="noPerkBox">
+        <h1>-????-</h1>
+        <h3>N/A</h3>
+        <span>No perk available.</span>
+        <br>
+        <br>
+        <span>Sorry!</span>
+      </div>
+      <div id="noEpicBox" class="noPerkBox">
+        <h1>-????-</h1>
+        <h3>N/A</h3>
+        <span>No perk available.</span>
+        <br>
+        <br>
+        <span>Sorry!</span>
+      </div>
+      <div id="noLegendBox" class="noPerkBox">
+        <h1>-????-</h1>
+        <h3>N/A</h3>
+        <span>No perk available.</span>
+        <br>
+        <br>
+        <span>Sorry!</span>
+      </div>
+      <div id="noMysticBox" class="noPerkBox">
+        <h1>-????-</h1>
+        <h3>N/A</h3>
+        <span>No perk available.</span>
+        <br>
+        <br>
+        <span>Sorry!</span>
+      </div>
+      
+      </div>
+  </div>
+  <div class="box2">
+    <h2 class="title center">-Owned perks-</h2>
+    <p class="center" id="perksOwned">.</p>
+  </div>
+</div>
+</div>
+
+<div id="hacks">
+<div id="topbar-layer2">
+<span id="name-tab"><b>Hacks</b></span>
+|
+<span id="priv3" class="count" style="cursor: pointer" onclick="fullPriv.showModal()">privacy</span>
+|
+<span id="hackMulti" class="count">hack multi</span>
+|
+<span id="hackTimeMulti" class="count">hack time multi</span>
+</div>
+<!-- Stuff here -->
+<div id="gameplay-zone">
+  <div class="box3">
+  <h2 class="title center">-N/A-</h2>
+</div>
+<div class="box3">
+  <h2 class="title center">-N/A-</h2>
+  <p class="center">I'm sorry, but since this remaster of Idle Privacy is so new, Hacks do not work yet.</p>
+  <p class="center" id="code3"><b>Code!</b> Use code "idle privacy" for 1m privacy</p>
+</div>
+<div class="box3">
+  <h2 class="title center">-N/A-</h2>
+</div>
+</div>
+</div>
+
+<div id="prestige">
+<div id="topbar-layer2">
+<span id="name-tab"><b>Prestige</b></span>
+|
+<span id="priv4" class="count" style="cursor: pointer" onclick="fullPriv.showModal()">total privacy</span>
+|
+<span id="locks" class="count">locks</span>
+|
+<span id="keys" class="count">keys</span>
+</div>
+<!-- Stuff here -->
+<div id="gameplay-zone">
+  <div class="box2">
+    <h1 class="title center">-Prestige-</h1>
+    <button id="presBtn" class="upgBtn" onclick="pres(false)">Prestige</button>
+    <p>You will gain: <span id="locks2">num</span></p>
+    <p>You will lose nearly everything else.</p>
+  </div>
+  <div class="box2">
+    <h1 class="title center">-Stats-</h1>
+  </div>
+</div>
+</div>
+
+<div id="settings">
+<div id="topbar-layer2">
+<span id="name-tab"><b>Settings</b></span>
+</div>
+<!-- Stuff here -->
+<div id="gameplay-zone">
+<div class="box2">
+  <h2 class="title center">-Visual-</h2>
+  <span>Theme: </span>
+  <select id="theme">
+    
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+    <option value="terminal">Terminal</option>
+    <option value="hell">Hell</option>
+    
+  </select>
+  <br>
+  <br>
+  <span>Maxed upgrades: </span>
+  <select id="maxedUpg">
+    
+    <option value="show">Show at full opacity</option>
+    <option value="showHalf">Show at half opacity</option>
+    <option value="showQuarter">Show at quarter opacity</option>
+    <option value="hide">Hide</option>
+    
+  </select>
+  <br>
+  <br>
+  <select id="gameLay" style="opacity:0">
+    
+    <option value="default">Default</option>
+    <option value="padding">Padding on edges</option>
+    
+  </select>
+</div>
+<div class="box2">
+  <h2 class="title center">-Other-</h2>
+  <span>Input code: </span>
+  <input type="text" id="codeText" value="Code here...">
+  <button onclick="code()">Use</button>
+  <br>
+  <br>
+  <p>Note: This is the new version of Idle Privacy, the old version is available at <a href="/old.html">https://idle-privacy.x10.mx/old.html</a></p>
+</div>
+</div>
+</div>
+</div>
+
+<div name="dialogs">
+  
+<!-- More info screens -->
+<dialog id="dateInfo">
+<h2>Date info</h2>
+<p>Today's date: <span id="fullDate"></span></p>
+<button onclick="dateInfo.close()">Close</button>
+</dialog>
+<dialog id="batteryInfo">
+<h2>Battery info</h2>
+<h3>Basic info</h3>
+<p>Percent: <span id="percent"></span></p>
+<p>Time until death: <span id="timeUntilDeath"></span></p>
+<h3>Charging info</h3>
+<p>Charging?: <span id="charging"></span></p>
+<p>Time until full: <span id="timeUntilFull"></span></p>
+<button onclick="batteryInfo.close()">Close</button>
+</dialog>
+<dialog id="ppsProdInfo">
+  <h2>PPS info</h2>
+  <p>PPS: <span id="pps"></span></p>
+  <p>PPS producer: <span id="ppsProd"></span></p>
+  <p>PPS time: <span id="ppsTime"></span></p>
+<button onclick="ppsProdInfo.close()">Close</button>
+</dialog>
+<dialog id="fullPriv">
+  <h2>Full privacy number</h2>
+  <p id="privacy" class="fullPriv"></p>
+  <p>This can also be seen as: <span id="shortPriv"></span></p>
+  <button onclick="fullPriv.close()">Close</button>
+  <p id="code2"><b>Code!</b> Use code "securly" for 1k pps</p>
+</dialog>
+<dialog id="fullTotalPriv">
+  <h2>Full total privacy number</h2>
+  <p id="totalPrivacy" class="fullPriv"></p>
+  <p>This can also be seen as: <span id="shortPriv2"></span></p>
+  <button onclick="fullTotalPriv.close()">Close</button>
+</dialog>
+<dialog id="presConfirm">
+  <h2>Are you sure you'd like to prestige?</h2>
+  <p>You'll lose <b>all</b> your privacy, alongside your PPS, PPC, or any other Home screen or Upgrade screen upgrades.</p>
+  <p>You won't lose your Locks, Keys, Prestige upgrades, or Hacks.</p>
+  <p>You'll gain <span id="locks3">num</span></p>
+  <p>Note: Lock multis round to the nearest integer due to the limitations of BigInts, so don't prestige until you would gain more than 40 locks.</p>
+  <p id="code1"><b>Code!</b> Use code "Lock Up" to get a free 100 Locks.</p>
+  <button onclick="presConfirm.close()">Cancel</button>
+  <button onclick="pres(true)">Confirm</button>
+</dialog>
+<dialog id="ppcMultiInfo">
+  <h2>PPC info</h2>
+  <p>PPC: <span id="ppc"></span></p>
+  <p>PPC multi: <span id="ppcMulti"></span></p>
+<button onclick="ppcMultiInfo.close()">Close</button>
+</dialog>
+
+<!-- prestige shop -->
+<dialog id="presShop">
+  <div id="gameplay-zone">
+  <h1 class="title center">-Prestige shop-</h1>
+  <p class="center">You have <span id="locks4">num</span></p>
+  <div class="box4">
+    <h2 class="title center">-PPS/PPC upgrades-</h2>
+    <br>
+    <button class="upgBtn" id="presPpsMultiBtn" onclick="buyPresPpsMulti()">Buy PPS multi</button>
+    <p class="center">Cost: <span id="presPpsMultiCost"></span></p>
+    <br>
+    <button class="upgBtn" id="presPpcMultiBtn" onclick="buyPresPpcMulti()">Buy PPC multi</button>
+    <p class="center">Cost: <span id="presPpcMultiCost"></span></p>
+    
+  </div>
+  <div class="box4">
+    <h2 class="title center">-Hack upgrades-</h2>
+  </div>
+  <div class="box4">
+    <h2 class="title center">-Prestige upgrades-</h2>
+  </div>
+  <div class="box4">
+    <h2 class="title center">-Automation upgrades-</h2>
+  </div>
+  <div class="box4">
+    <h2 class="title center">-Unique upgrades-</h2>
+  </div>
+  <div class="box4">
+    <h2 class="title center">-Unlocks-</h2>
+  </div>
+  <button onclick="presShop.close()" class="upgBtn" style="opacity:0">.</button>
+  <button onclick="presShop.close(); resetCurrencies()" class="upgBtn">Close</button>
+  <p class="center">Note: You cannot reenter the prestige shop until the next time you prestige.</p>
+  <p class="center" style="opacity:0.5">(hence why the entire prestige shop is a big <code>dialog</code> element)</p>
+  </div>
+</dialog>
+
+<!-- "special" settings -->
+<dialog id="special" class="full">
+  <h1 class="title center">-Unblxcking-</h1>
+  <h1 class="title center">QUICK! Go to <a href="/in.html">this link</a> to disable Securly. It's unblocked if you're here!</h1>
+  <div class="box4">
+  <h2 class="title center">-Unblxcked stuff-</h2>
+  <span>Unblxcked Hist Flood: </span>
+  <input id="flood-count" placeholder="100">
+  <button onclick="flood(document.getElementById('flood-count').value)">Flood!</button>
+  <br>
+  <br>
+  <span>Unblxcked DevTools: </span>
+  <button onclick="devTools()">Activate</button>
+  <p class="caption">You'll need to close the unblxcking settings to see this, as the unblxcking settings is technically a modal.</p>
+  </div>
+  <div class="box4">
+  <h2 class="title center">-Cloaker-</h2>
+  <span>Open any website cloaked: </span>
+  <br>
+  <span>Or go to <a href="https://nuclear-nc.x10.mx/onlyCloaker.html">https://nuclear-nc.x10.mx/onlyCloaker.html</a></span>
+  <p>Link</p>
+  <input type="url" id="cloakLink" value="https://idle-privacy.x10.mx">
+  <br>
+  <p>Title</p>
+  <input type="text" id="cloakTitle" value="Idle Privacy">
+  <p>Favicon</p>
+  <input type="url" id="cloakFav" value="https://idle-privacy.x10.mx/favicon.png">
+  <p>Escape URL</p>
+  <input type="url" id="cloakEscUrl" value="https://classroom.google.com">
+  <p title="The esc button will only work the if you haven't interacted with the iFrame.">Escape button*</p>
+  <input type="url" id="cloakEsc" value="|">
+  <br>
+  <br>
+  <button onclick="cloak()">Go</button>
+  <p class="caption">*the esc button will only work the if you haven't interacted with the iFrame.</p>
+  <p class="caption">I'm not copying code from elsewhere to fix it, I don't want to be even more of a skid :/</p>
+  <br>
+  </div>
+  <div class="box4">
+  <h2 class="title center">-This tab-</h2>
+  <span>Tab name:</span>
+  <input id="tab-name" placeholder="Idle Privacy">
+  <p class="caption">This won't work if you're here on a cloaked tab, pxoxy, or an iFrame.</p>
+  <br>
+  <h3>-Favicon-</h3>
+  <span>File:</span>
+  <label for="favicon" style="border:var(--border);">Choose file</label>
+  <input type="file" id="favicon" style="opacity:0; width:0; height:0;" accept=".jpg, .jpeg, .png, .ico" name="favicon">
+  <img src="/thisisntarealimage.png" id="faviconImg">
+  <br>
+  <br>
+  <span>URL: </span>
+  <input id="faviconUrl" type="url" placeholder="https://example.com/img.png">
+  <button onclick="faviconUrl()">Use</button>
+  <p class="caption">This won't work if you're here on a cloaked tab, pxoxy, or an iFrame.</p>
+  <br>
+  <h3>-Escape button-</h3>
+  <br>
+  <label for="link">Link: </label>
+  <input name="link" id="link">
+  <br>
+  <label for="button">Button: </label>
+  <input name="button" id="button">
+  <button onclick="setEsc(true)">Set</button>
+  <br>
+  <h3>-Cloaking-</h3>
+  <span>Cloak this tab: </span>
+  <button onclick="cloakThis()">Activate</button>
+  <br>
+  <br>
+  <p>Note: This uses the same settings as the custom about:blank creator, except for the URL.</p>
+  <br>
+  <br>
+  </div>
+  <div class="box4">
+    <h2 class="title center">-Bookmarklxts-</h2>
+    <p class="caption">Note: These won't work if copying the code below into your URL bar won't give you an alert that says "Bookmarklxts are unblxcked!"</p>
+    <p class="caption">If nothing happens, that means you have bookmarklxts blocked :/</p>
+    <p class="caption">Pressing the "Run" link will still run it though.</p>
+    <p class="caption">If you have DevTools(CTRL+SHIFT+I) blocked, go to <code>chrome://version</code> and if your CB is 115+, bookmarlxts will be blocked.</p>
+    <br>
+    <button class="upgBtn" onclick="testBook()">Test bookmarklxts</button>
+    <br>
+    <br>
+    <h3>-Hist Flood-</h3>
+    <p><code id="histBook" class="caption"></code></p>
+    <button class="upgBtn" onclick="copy(hf)">Copy</button>
+    <a href="" id="histRun">Run</a>
+    <br>
+    <br>
+    <h3>-Escape Button-</h3>
+    <p><code id="escBook" class="caption"></code></p>
+    <button class="upgBtn" onclick="copy(eb)">Copy</button>
+    <a href="" id="escRun">Run</a>
+    <br>
+    <br>
+    <h3>-Cloak any tab-</h3>
+    <p><code id="clBook" class="caption"></code></p>
+    <button class="upgBtn" onclick="copy(cl)">Copy</button>
+    <a href="" id="clRun">Run</a>
+    <br>
+    <br>
+    <h3>-Cloak current tab-</h3>
+    <p><code id="clcBook" class="caption"></code></p>
+    <button class="upgBtn" onclick="copy(clc)">Copy</button>
+    <a href="" id="clcRun">Run</a>
+    <br>
+    <br>
+    <h3>-DevTools-</h3>
+    <p><code id="dtBook" class="caption"></code></p>
+    <button class="upgBtn" onclick="copy(dt)">Copy</button>
+    <a href="" id="dtRun">Run</a>
+    <br>
+    <br>
+    <h3>-Source Viewer-</h3>
+    <p><code id="cgBook" class="caption"></code></p>
+    <button class="upgBtn" onclick="copy(cg)">Copy</button>
+    <a href="" id="cgRun">Run</a>
+    <br>
+    <br>
+    <h3>-Change current tab to an iFrame of your choice-</h3>
+    <p><code id="reBook" class="caption"></code></p>
+    <button class="upgBtn" onclick="copy(re)">Copy</button>
+    <a href="" id="reRun">Run</a>
+  </div>
+  <div class="box4">
+    <h2 class="title center">-Gxmes-</h2>
+    <p class="caption">Note: This list is ever-updating, and if you're on a community link, you may not have all the gxmes that would be available on an official link due to the owner of the community link not updating their site.</p>
+  </div>
+  <div class="box4">
+    
+    <h2>-Alternate Links-</h2>
+    <p class="caption">Alternate links for Idle Privacy.</p>
+    <p class="caption">While we're here, make sure to check out <a href="https://nuclear-nc.x10.mx">my site!</a></p>
+    <h3>-Main Link-</h3>
+    <p class="caption">This is the main link I host Idle Privacy on.</p>
+    <p><a href="https://idle-privacy.x10.mx">https://idle-privacy.x10.mx</a></p>
+    <br>
+    <h3>-Official Links-</h3>
+    <p class="caption">Links that either I own, or a trusted person owns.</p>
+    <p><a href="https://idle-privacy.nuclearnatocat.repl.co">https://idle-privacy.nuclearnatocat.repl.co</a></p>
+    <br>
+    <h3>-Community Links-</h3>
+    <p class="caption">These links are links that have been made by other people.</p>
+    <p>There aren't any community links at this time.</p>
+    <br>
+    <h3>-Cleaned Links-</h3>
+    <p class="caption">These links are just like the other links, but they don't have the unblxcking stuff added so schools won't recognise this site as a secret unblxcking site. Make sure to make some of these too!</p>
+    <p>There aren't any cleaned links at this time.</p>
+    <br>
+    <button class="upgBtn" onclick="create.showModal()">Create your own IP link!</button>
+    
+  </div>
+  <button class="upgBtn" onclick="special.close()" style="opacity:0">Close</button>
+  <button class="upgBtn" onclick="special.close()">Close</button>
+</dialog>
+
+<!-- Create own link -->
+<dialog id="create" class="full">
+  <h1 class="title center">-IP Code Generator-</h1>
+  <div class="box4">
+    <h2>-Settings-</h2>
+    <span>Game name: </span>
+    <input id="mainName" value="Idle Privacy" type="text">
+    <br>
+    <br>
+    <span>Game description: </span>
+    <input id="mainDesc" value="Idle Privacy is a free-to-play web game with added features for those stuck with spyware." type="text">
+    <br>
+    <br>
+    <span>Favicon: </span>
+    <input id="mainFav" value="https://idle-privacy.x10.mx/favicon.png" type="text">
+    <br>
+    <br>
+    <span>Currency name: </span>
+    <input id="currName" value="Privacy" type="text">
+    <br>
+    <br>
+    <span>Hack name: </span>
+    <input id="hackName" value="Hack" type="text">
+    <br>
+    <span style="font-size:2ch">Note: Do not end it in "s" or "ing", those are added for you.(and make sure it would work with those)</span>
+    <br>
+    <br>
+    <span>PPS name: </span>
+    <input id="ppsName" value="Pps" type="text">
+    <br>
+    <br>
+    <span>PPC name: </span>
+    <input id="ppcName" value="Ppc" type="text">
+    <br>
+    <br>
+    <span style="font-size:2ch">Note: Start all names with capital letters(if your an idiot, delete the first letter and than type it back in while holding "Shift" to type a capital letter) so it looks better.</span>
+    <br>
+    <br>
+    <h3 class="title center">-Premade-</h3>
+    <button class="upgBtn" onclick="defGen()" id="qqqq">Ivacy</button>
+    <br>
+    <button class="upgBtn" onclick="knoGen()">Idle Knowledge</button>
+  </div>
+  <div class="box4">
+    <button class="half" onclick="generate()" style="font-size:4.5vw">-------- Generate Normal --------</button>
+    <br>
+    <button class="half" onclick="generateClean()" style="font-size:4.75vw">---------- Generate Clean ----------</button>
+  </div>
+  <div class="box4">
+    <h2>-Output-</h2>
+    <span id="createOutput">N/A</span>
+    <span id="output" style="display:none">N/A</span>
+    <br>
+    <br>
+    <button class="upgBtn" onclick="downloadHtml()">Download</button>
+  </div>
+    <br>
+    <br>
+    <h1 class="title center">-How to use this-</h1>
+    <p>So... You want to make your own link to Idle Privacy?</p>
+    <h2 class="title center">-Step 1-</h2>
+    <p class="left">First, you'll have to generate the <code>index.html</code> file of your Idle Privacy link.</p>
+    <p class="left"> Even an idiot can do it using the handy generator above.</p>
+    <br>
+    <br>
+    <h2 class="title center">-Step 2-</h2>
+    <p class="left">You'll also have to download the <code>classes.zip</code> file to put onto your website.(Hint: It's the gxmes)</p>
+    <a href="" download="classes.zip"><button class="upgBtn">Download</button></a>
+    <br>
+    <br>
+    <span class="left">(This isn't working for now, wait until I have my site to host gxmes on)</span>
+    <br>
+    <br>
+    <h2 class="title center">-Step 3-</h2>
+    <p class="left">Get a domain from any domain provider.</p>
+    <p class="left"> It can be a subdomain or a TLD.</p>
+    <p class="left">You could use <a href="https://x10hosting.com">x10hosting</a>[<code>.x10.mx</code>], <a href="https://replit.com">Replit</a>[<code>.repl.co</code>], <a href="https://github.com">GitHub</a>[<code>.github.io</code>], etc. <a href="https://x10hosting.com">x10hosting</a> has the highest unblxcked rate due to it's not being popular.</p>
+    <p class="left caption">You don't need to have a free or paid domain. All domains work.</p>
+    <br>
+    <br>
+    <h2 class="title center">-Step 4-</h2>
+    <p class="left">Go to your new domain's file system. Go into the <code>public-html</code> folder, and upload the <code>index.html</code> file you generated, as well as the games file.</p>
+    <p class="left caption">If you're using x10hosting and don't know where to find the <code>public-html</code> folder, go to the <code>domains</code> folder and go to <code>[domain-you-selected].x10.mx</code>, and you'll see it.</p>
+    <p class="left caption">If there isn't a <code>public-html</code> folder, go to where you see <code>index.html</code>, and replace that file with your new <code>index.html</code> file, and put <code>classes.zip</code> right underneath it.</p>
+    <br>
+    <br>
+    <h2 class="title center">-Step 5-</h2>
+    <p class="left">(Chromebook)Alt-click the <code>classes.zip</code> file, and press "Extract".</p>
+    <p class="left caption">You should get a folder named "classes".</p>
+    <br>
+    <br>
+    <h2 class="title center">-Step 6-</h2>
+    <p class="left">Save all your files, and depending on the website, deploy your website.</p>
+    <p class="left caption">After this step, going to the link you chose should be Idle Privacy, gxmes and all.</p>
+    <br>
+    <br>
+    <h2 class="title center">-Step 7-</h2>
+    <p class="left">If the link works, submit it to my <a href="">form</a> to get your site added to the community links.</p>
+    <p class="left caption">And make sure to update <code>index.html</code> and <code>classes.zip</code> to ensure your link has all the newest gxmes and stuff from Idle Privacy!</p>
+  <button class="upgBtn" onclick="create.close()" style="opacity:0">Close</button>
+  <button class="upgBtn" onclick="create.close()">Close</button>
+</dialog>
+</div>
+
+<div name="scripts">
+<!-- Gameplay scripts -->
+<script name="prestige">
+// prestige
+let locks = 0n;
+let keys = 0n;
+let lockMulti = 5n;
+let totalLockMulti = 1n;
+
+// keys keys keys
+let keyMulti = 1n;
+let keyReduction = 0n;
+
+// make this work
+let presReq = 10000n;
+let locksToGain = 0n;
+
+
+// reset vars
+
+// normal privacy stuff
+let presPriv = 1n;
+let presPrivCost = 100n;
+let presPrivMultiMulti = 1n;
+
+// ppc stuff
+let presPpc = 1n;
+let presPpcMulti = 1n;
+let presPpcCost = 25n;
+let presPpcCost2;
+let presPpcMultiCost = 25n;
+let presPpcMultiMulti = 1n;
+
+// pps stuff
+let presPps = 1n;
+let presPpsMulti = 1n;
+let presPpsCost = 20n;
+let presPpsCost2;
+let presPpsProdCost = 25n;
+let presPpsProd = 0n;
+let presPpsProdMulti = 1n;
+
+// pps time
+let presPpsTimeCost = 1000000000n;
+let presPpsTime = 1000;
+let presPpsTimeBought = 0;
+
+// privacy multi
+let presPrivMulti = 1n;
+
+// hacks
+let presHackMulti = 100n;
+let presHackTimeMulti = 100;
+
+// pres shop vars
+let presPpsMultiCost = 50n;
+let presPpcMultiCost2 = 75n;
+let presPpcMulti2 = 1n;
+
+// functions
+function pres(confirm) {
+  if(confirm === false) {
+    presConfirm.showModal();
+  } else {
+    locks += locksToGain;
+    presConfirm.close();
+    presShop.showModal();
+  }
+}
+
+function resetCurrencies() {
+// normal privacy stuff
+privacy = presPriv;
+privCost = presPrivCost;
+privMultiMulti = presPrivMultiMulti;
+
+// ppc stuff
+ppc = presPpc;
+ppcMulti = presPpcMulti;
+ppcCost = presPpcCost;
+ppcMultiCost = presPpcMultiCost;
+ppcMultiMulti = presPpcMultiMulti;
+
+// pps stuff
+pps = presPps;
+ppsMulti = presPpsMulti;
+ppsCost = presPpsCost;
+ppsProdCost = presPpsProdCost;
+ppsProd = presPpsProd;
+ppsProdMulti = presPpsProdMulti;
+
+// pps time
+ppsTimeCost = presPpsTimeCost;
+ppsTime = presPpsTime;
+ppsTimeBought = 0;
+
+// privacy multi
+privMulti = presPrivMulti;
+
+// hacks
+hackMulti = presHackMulti;
+hackTimeMulti = presHackTimeMulti;
+
+// pres
+presReq = 10000n;
+locksToGain = 0n;
+}
+
+function buyPresPpsMulti() {
+  if(locks > presPpsMultiCost) {
+    locks -= presPpsMultiCost;
+    presPpsMulti += 1n;
+    presPpsMultiCost *= 3n;
+    presPpsMultiCost /= 2n;
+  }
+}
+
+function buyPresPpcMulti() {
+  if(locks > presPpcMultiCost2) {
+    locks -= presPpcMultiCost2;
+    presPpcMulti2 += 1n;
+    presPpcMultiCost2 *= 3n;
+    presPpcMultiCost2 /= 2n;
+  }
+}
+
+// text n pres
+setInterval(() => {
+  document.getElementById("locks2").textContent = `${ns(locksToGain)} Locks.`;
+  document.getElementById("locks3").textContent = `${ns(locksToGain)} Locks.`;
+  document.getElementById("locks4").textContent = `${ns(locks)} Locks.`;
+  document.getElementById("presPpsMultiCost").textContent = `${ns(presPpsMultiCost)} Locks`
+  document.getElementById("presPpcMultiCost").textContent = `${ns(presPpcMultiCost2)} Locks`
+}, 50);
+
+setInterval(() => {
+  if(privacy >= presReq) {
+    while(privacy >= presReq) {
+      locksToGain += 1n;
+      presReq *= 20n;
+      presReq /= 19n;
+    }
+  }
+}, 250);
+
+// enough(spent, bought, cost)
+setInterval(() => {
+  
+  enough(locks, "presPpsMulti", presPpsMultiCost);
+  enough(locks, "presPpcMulti", presPpcMultiCost2);
+  
+}, 50);
+
+  
+</script>
+<script name="idle-privacy-main">
+// variables
+
+// normal privacy stuff
+let privacy = 1n;
+let privCost = 100n;
+let privMultiMulti = 1n;
+
+// ppc stuff
+let ppc = 1n;
+let ppcMulti = 1n;
+let ppcCost = 25n;
+let ppcCost2;
+let ppcMultiCost = 25n;
+let ppcMultiMulti = 1n;
+
+// pps stuff
+let pps = 1n;
+let ppsMulti = 1n;
+let ppsCost = 20n;
+let ppsCost2;
+let ppsProdCost = 25n;
+let ppsProd = 0n;
+let ppsProdMulti = 1n;
+
+// pps time
+let ppsTimeCost = 1000000000n;
+let ppsTime = 1000;
+let ppsTimeBought = 0;
+
+// total privacy
+let totalPriv = 1n;
+
+// privacy multi
+let privMulti = 1n;
+
+// hacks
+let hackMulti = 100n;
+let hackTimeMulti = 100;
+
+// objects/arrays
+const player = {
+  page: "home",
+  status: [""],
+  perks: [],
+  perksShown: []
+};
+
+
+// key functions
+function gainPriv() {
+  if(keyReduction > 100n) {
+    privacy += ppc * privMulti * (lockMulti*(locks-keys)/100n);
+    totalPriv += ppc + privMulti * ((locks-keys)/100n);
+  } else {
+    privacy += ppc * privMulti;
+    totalPriv += ppc + privMulti;
+  }
+}
+function buyPpc() {
+  if(privacy >= ppcCost) {
+    ppc += ppcMulti*presPpcMulti2;
+    privacy -= ppcCost;
+    ppcCost2 = ppcCost * 11n;
+    ppcCost2 /= 10n;
+    ppcCost = ppcCost2;
+  }
+}
+function buyPps() {
+  if(privacy >= ppsCost) {
+    pps += ppsMulti;
+    privacy -= ppsCost;
+    ppsCost *= 15n;
+    ppsCost /= 14n;
+  }
+}
+function buyPriv() {
+  if(privacy >= privCost) {
+    privacy -= privCost;
+    privMulti += privMultiMulti;
+    privCost *= 2n;
+  }
+}
+function buyPpsTime() {
+  if(privacy > ppsTimeCost) {
+    privacy -= ppsTimeCost;
+    ppsTime *= 9;
+    ppsTime /= 10;
+    ppsTimeCost *= 10n;
+    ppsTimeBought++;
+  }
+}
+function buyPpcMulti() {
+  if(ppc >= ppcMultiCost) {
+    ppcMulti += ppcMultiMulti;
+    ppc -= ppcMultiCost;
+    ppcMultiCost = ppcMultiCost * 11n;
+    ppcMultiCost /= 10n;
+  }
+}
+function buyPpsProd() {
+  if(pps >= ppsProdCost) {
+    ppsProd += ppsProdMulti;
+    pps -= ppsProdCost;
+    ppsProdCost = ppsProdCost * 6n;
+    ppsProdCost /= 5n;
+  }
+}
+
+// pps stuff
+function ppsFunc() {
+  if(keyReduction > 100n) {
+    privacy += pps * privMulti * (lockMulti*(locks-keys)/100n);
+    totalPriv += pps + privMulti * ((locks-keys)/100n);
+  } else {
+    privacy += pps * privMulti;
+    totalPriv += pps + privMulti;
+  }
+  setTimeout(ppsFunc, ppsTime);
+}
+function ppsProdFunc() {
+  pps += ppsProd * ppsMulti;
+  setTimeout(ppsProdFunc, ppsTime);
+}
+
+// get your pps every second
+ppsFunc();
+ppsProdFunc();
+
+// update all text and other stuff
+setInterval(() => {
+// privacy
+document.getElementById("priv1").textContent = ns(privacy)+" privacy";
+document.getElementById("priv2").textContent = ns(privacy)+" privacy";
+document.getElementById("priv3").textContent = ns(privacy)+" privacy";
+document.getElementById("priv4").textContent = ns(privacy)+" privacy";
+
+document.getElementById("priv1").title = "Click for full privacy number";
+document.getElementById("priv2").title = "Click for full privacy number";
+document.getElementById("priv3").title = "Click for full privacy number";
+document.getElementById("priv4").title = "Click for full privacy number";
+
+document.getElementById("totalPriv").textContent = ns(totalPriv)+" privacy total";
+document.getElementById("privCost").textContent = ns(privCost)+" privacy";
+enough(privacy, "privMulti", privCost);
+
+// show full privacy
+document.getElementById("privacy").textContent = privacy;
+document.getElementById("totalPrivacy").textContent = totalPriv;
+
+if(privacy <= 10n) {
+document.getElementById("shortPriv").textContent = `${pa(0)} x 10^${String(privacy).slice(0).length}`;
+document.getElementById("shortPriv2").textContent = `${pa(0)} x 10^${String(privacy).slice(0).length}`;
+} else if(privacy <= 100n) {
+document.getElementById("shortPriv").textContent = `${pa(0)}.${pa(1)} x 10^${String(privacy).slice(0).length}`;
+document.getElementById("shortPriv2").textContent = `${pa(0)}.${pa(1)} x 10^${String(privacy).slice(0).length}`;
+} else if(privacy <= 1000n) {
+document.getElementById("shortPriv").textContent = `${pa(0)}.${pa(1)}${pa(2)} x 10^${String(privacy).slice(0).length}`;
+document.getElementById("shortPriv2").textContent = `${pa(0)}.${pa(1)}${pa(2)} x 10^${String(privacy).slice(0).length}`;
+} else if(privacy == privacy) {
+document.getElementById("shortPriv").textContent = `${pa(0)}.${pa(1)}${pa(2)}${pa(3)} x 10^${String(privacy).slice(0).length}`;
+document.getElementById("shortPriv2").textContent = `${pa(0)}.${pa(1)}${pa(2)}${pa(3)} x 10^${String(privacy).slice(0).length}`;
+}
+
+
+// ppc
+document.getElementById("ppc").textContent = ns(ppc);
+document.getElementById("ppc1").textContent = ns(ppc)+" ppc";
+document.getElementById("ppc2").textContent = ns(ppc)+" ppc";
+document.getElementById("ppcMulti").textContent = ns(ppcMulti);
+
+document.getElementById("ppcCost").textContent = ns(ppcCost)+" privacy"
+enough(privacy, "ppc", ppcCost);
+document.getElementById("ppcMultiCost").textContent = ns(ppcMultiCost)+" ppc";
+enough(ppc, "ppcMulti", ppcMultiCost);
+
+// pps
+document.getElementById("pps1").textContent = ns(pps)+" pps";
+document.getElementById("pps2").textContent = ns(pps)+" pps";
+document.getElementById("ppsTime").textContent = Math.round(ppsTime)+" ms";
+
+document.getElementById("ppsTimeCost").textContent = ns(ppsTimeCost)+" privacy";
+enough(privacy, "ppsTime", ppsTimeCost);
+document.getElementById("ppsCost").textContent = ns(ppsCost)+" privacy"
+enough(privacy, "pps", ppsCost);
+document.getElementById("ppsProdCost").textContent = ns(ppsProdCost)+" pps";
+enough(pps, "ppsProd", ppsProdCost);
+
+// pps info
+document.getElementById("pps").textContent = ns(pps);
+document.getElementById("ppsProd").textContent = ns(ppsProd);
+
+// maxed upgrades handler
+maxCheck("ppsTime", ppsTimeBought, 10, 0);
+
+// hacking
+document.getElementById("hackMulti").textContent = ns(hackMulti)+"% hack multi";
+document.getElementById("hackTimeMulti").textContent = ns(hackTimeMulti)+"% hack time multi";
+
+// perks
+document.getElementById("perkMulti").textContent = ns(perkMulti)+"% perk multi";
+document.getElementById("perkReqMulti").textContent = ns(perkReqMulti)+"% perk requirement";
+
+// prestige
+keyReduction = lockMulti*(locks-(keys*keyMulti))-100n;
+totalLockMulti = (lockMulti*locks)-100n;
+document.getElementById("locks").textContent = ns(locks)+" locks";
+document.getElementById("locks").title = `Without keys: +${totalLockMulti}% privacy\nWith keys: +${keyReduction}% privacy\nNote: Any number under 0 means 0.`;
+document.getElementById("keys").textContent = ns(keys)+" keys";
+
+}, 50);
+
+function enough(spent, bought, cost) {
+  if(spent < cost) {
+  document.getElementById(`${bought}Btn`).style.opacity = 0.5;
+  document.getElementById(`${bought}Btn`).style.cursor = "not-allowed";
+  return false;
+  } else {
+  document.getElementById(`${bought}Btn`).style.opacity = 1;
+  document.getElementById(`${bought}Btn`).style.cursor = "pointer";
+  return true;
+  }
+}
+function maxCheck(upgrade, level, max, setting) {
+  setting = document.getElementById("maxedUpg").value;
+  if(level >= max) {
+    document.querySelector(`.${upgrade}`).id=setting;
+    document.getElementById(`${upgrade}Cost`).textContent = "Maxed";
+    return true;
+  } else {
+    document.querySelector(`.${upgrade}`).id="";
+    return false;
+  }
+}
+function pa(priv) {
+return String(privacy).at(priv);
+}
+
+// number system
+const nums = ["", "k", "m", "b", "t", "q", "Q", "s", "S", "o", "n", "d", "ud", "dd", "td", "qd", "Qd", "sd", "Sd", "od", "nd"];
+function infNums(req) {
+  req = String(req);
+  if(req <= 9) {
+  req = req.padStart(2, "0");
+  }
+  req = req.replaceAll("0", "A");
+  req = req.replaceAll("1", "B");
+  req = req.replaceAll("2", "C");
+  req = req.replaceAll("3", "D");
+  req = req.replaceAll("4", "E");
+  req = req.replaceAll("5", "F");
+  req = req.replaceAll("6", "G");
+  req = req.replaceAll("7", "H");
+  req = req.replaceAll("8", "I");
+  req = req.replaceAll("9", "J");
+  let req2 = req.slice(1);
+  req2 = req2.toLowerCase();
+  req = req.at(0)+req2;
+  return req;
+}
+function ns(num) {
+  let amt = 0;
+  let amt2;
+  let num2;
+  let num3;
+  amt++;
+  // number
+  if(typeof num === "number") {
+  while(num >= 1000) {
+    num /= 1000;
+    num = Math.floor(num * 1000) / 1000;
+    amt++;
+  }
+  amt++;
+  amt -= 2;
+  num = Math.floor(num * 1000) / 1000;
+  num += nums[amt];
+  return num;
+  }
+  // bigint
+  if(typeof num === "bigint" && num >= 1000n) {
+  while(num >= 1000000n) {
+    num /= 1000n;
+    amt++;
+  }
+  amt++;
+  amt--;
+  num = String(num);
+  
+  // check for num of zeroes
+  if (Number.isInteger(zeroes(num) / 3) === true) {
+      // mult of 3
+      num3 = num.at(0);
+      amt2 = 1;
+  } else if (Number.isInteger(zeroes(num) / 2) === true) {
+      // even
+      num3 = num.at(0) + num.at(1);
+      amt2 = 2;
+  } else if (Number.isInteger(zeroes(num) / 2) === false) {
+      // neither
+      num3 = num.at(0) + num.at(1) + num.at(2);
+      amt2 = 3;
+  }
+  
+  num2 = num.slice(amt2);
+  num2 = num2.padStart(num2.length+1, ".");
+  
+  // give ending
+  if(amt <= 21) {
+  num2 += nums[amt];
+  } else {
+  num2 += infNums(amt-21);
+  }
+  
+  // combine
+  num = num3+num2;
+  return num;
+  } else {return num}
+  }
+function zeroes(num1) {
+  return num1.length-1
+}
+</script>
+<script name="perks">
+// variables
+let perkMulti = 100n;
+let perkReqMulti = 100n;
+let perkReq = 1000000n;
+let perkChoices = 0;
+let luck = 100;
+let perk1;
+let perk2;
+let perk3;
+let perk4;
+let perk5;
+let perk6;
+let perk7;
+let perk8;
+let perk9;
+let perk10;
+let perk11;
+let perk12;
+let perk13;
+let perk14;
+let perk15;
+
+let perkArrayName;
+
+// perk multis
+let perkPrivMulti = 1n;
+let perkPpcMulti = 1n;
+let perkPpsMulti = 1n;
+let perkPpsTimeMulti = 1n;
+let perkLockMulti = 1n;
+let perkLuckMulti = 1n;
+let perkKeyMulti = 1n;
+
+// class
+class Perk {
+    constructor(name, desc, effect1, effect2, effect3, rarity, varName) {
+      this.name = name;
+      this.desc = desc;
+      if(effect3 !== null) {
+      this.effects = [effect1, effect2, effect3];
+      } else if(effect2 !== null) {
+      this.effects = [effect1, effect2];
+      } else if(effect1 !== null) {
+      this.effects = [effect1];
+      }
+      this.rarity = rarity;
+      this.varName = varName;
+    }
+    selectPerk() {
+      document.getElementById(`${this.rarity.toLowerCase()}Name`).textContent = this.name;
+      document.getElementById(`${this.rarity.toLowerCase()}Desc`).textContent = this.desc;
+      document.getElementById(`${this.rarity.toLowerCase()}Fx`).innerHTML = String(this.effects).replaceAll(",", "<br>");
+      if(this.rarity.toLowerCase() === "mystic") {
+        perk1 = this.varName;
+        perk6 = this.name;
+        perk11 = this.effects;
+      } else if(this.rarity.toLowerCase() === "legend") {
+        perk2 = this.varName;
+        perk7 = this.name;
+        perk12 = this.effects;
+      } else if(this.rarity.toLowerCase() === "epic") {
+        perk3 = this.varName;
+        perk8 = this.name;
+        perk13 = this.effects;
+      } else if(this.rarity.toLowerCase() === "rare") {
+        perk4 = this.varName;
+        perk9 = this.name;
+        perk14 = this.effects;
+      } else if(this.rarity.toLowerCase() === "common") {
+        perk5 = this.varName;
+        perk10 = this.name;
+        perk15 = this.effects;
+      }
+    }
+  }
+  
+// make perk objects
+
+// common
+const dataLookout = new Perk("Data lookout", "You pay more attention to where your data is and who has it.", "x1.1 privacy", null, null, "common", "dataLookout");
+
+const bgnerClicker = new Perk("Beginner clicker", "You get better at clicking.", "x1.15 ppc", null, null, "common", "bgnerClicker");
+
+const bgnerWaiter = new Perk("Beginner waiter", "You learn to wait better and for longer.", "x1.2 pps", null, null, "common", "bgnerWaiter");
+
+const smallPerkReq = new Perk("Streamline perk process", "You streamline your process of getting perks.", "x0.5 perk requirement", null, null, "common", "smallPerkReq");
+
+// rare
+const lilLazy = new Perk("Little lazy", "You become slightly more lazy.", "x1.5 pps", "x0.85 ppc", null, "rare", "lilLazy");
+
+const activePlayer = new Perk("Active player", "You become more active as a player.", "x1.2 ppc", "x0.9 pps", null, "rare", "activePlayer");
+
+const lockUp = new Perk("Lock up", "You sacrifice some of your privacy to get more locks.", "x1.15 locks on next prestige", "x0.8 privacy", null, "rare", "lockUp");
+
+const luckyDay = new Perk("Lucky day", "It’s your lucky day, but too bad some of your privacy has gone.", "x1.1 luck", "x0.85 privacy", null, "rare", "luckyDay");
+
+// epic
+const impLocks = new Perk("Improved locks", "Your locks have been upgraded.", "+1% privacy per lock", null, null, "epic", "impLocks");
+
+const dropKeys = new Perk("Oops!", "Oops! You dropped some of your keys.", "x0.9 keys", null, null, "epic", "dropKeys");
+
+const medWaiter = new Perk("Medium waiter", "You have become better at waiting.", "x1.3 pps", null, null, "epic", "medWaiter");
+
+const impatient = new Perk("Impatient", "You have become more impatient.", "x1.15 pps speed", null, null, "epic", "impatient");
+
+const shortBoost = new Perk("Short boost", "You have an adrenaline rush.", "Get the Adrenaline status effect for 15 minutes", null, null, "epic", "shortBoost");
+
+// legend
+const proHacker = new Perk("Pro hacker", "You become much better at hacking.", "x1.3 all hack multis", "x1.1 all hack speeds", null, "legend", "proHacker");
+
+const ultLocks = new Perk("Ultimate locks", "You get much better locks than you previously had.", "+1% ppc per lock", "+1% pps per lock", null, "legend", "ultLocks");
+
+const keyGiver = new Perk("Key giver", "You give some of your keys to those not on a privacy journey like you.", "x0.75 keys", null, null, "legend", "keyGiver");
+
+const eladCitizen = new Perk("Eladotua citizenship", "Move to Eladotua, a city with strict privacy-protecting laws.", "x2 privacy", "x1.5 ppc", "x1.75 pps", "legend", "eladCitizen");
+
+const effectMaster = new Perk("Effect master", "You have mastered the art of keeping status effects for longer.", "x1.2 all status effect length", null, null, "legend", "effectMaster");
+
+const bulkLocks = new Perk("Bulk locks", "You become much better at getting locks from prestiging.", "x1.25 locks on next prestige", null, null, "legend", "bulkLocks");
+
+// mystical
+const godOfLuck = new Perk("God of luck", "You have become too lucky to anybody, including yourself to comprehend.", "x10 luck", "you can only see the stats affected by a perk when selecting perks", null, "mystic", "godOfLuck");
+
+const immortalMachine = new Perk("Immortal machine", "In pursuit of more locks, you have done things no human should ever do.", "Gain all locks you would if you prestiged right now", "Get the Immortal status effect for an hour", null, "mystic", "immortalMachine");
+
+const tooLazy = new Perk("Too lazy", "You have become too lazy to even click for privacy. You now rely on your PPS.", "x10 pps", "x0.1 pps speed", "x0 ppc", "mystic", "tooLazy");
+
+const ouroboros = new Perk("Ouroboros", "Around and around it goes.", "PPC has 10% of PPS added to it", "PPS has 10% of PPC added to it", null, "mystic", "ouroboros");
+
+const lockdown = new Perk("Lockdown", "Stop your privacy journey for now.", "x2.5 locks on next prestige", "x0 keys on next prestige", "x0 privacy", "mystic", "lockdown");
+
+const godOfPerks = new Perk("God of perks", "You have become so good at getting perks, that they have begun to go out of control.", "x5 perk effects", "x0.1 perk requirement", "x10 negative perk effects", "mystic", "godOfPerks");
+
+// loop
+setInterval(() => {
+document.getElementById("perksOwned").innerHTML = makeReadable(player.perksShown);
+document.getElementById("perkReq1").innerHTML = `${ns(perkReq-totalPriv)} privacy`;
+document.getElementById("perkReq2").innerHTML = `${ns(perkReq)} privacy`;
+document.getElementById("perksAvail").innerHTML = perkChoices;
+
+if(totalPriv >= perkReq) {
+  perkChoices++;
+  perkReq *= 1000000n;
+}
+if(perkChoices > 0 && document.getElementById("selectPerk").style.display !== "block") {
+  document.getElementById("noPerk").style.display = "none";
+  document.getElementById("waitPerk").style.display = "block";
+}
+}, 50);
+
+
+// functions
+// choose perks to show
+function loadPerks() {
+  document.getElementById("waitPerk").style.display = "none";
+  document.getElementById("selectPerk").style.display = "block";
+  let rng = Math.random()*100*(luck/100);
+  loadCommonPerk();
+  if(rng >= 99) {
+    loadMysticPerk();
+  }
+  if(rng >= 95) {
+    loadLegendPerk();
+    if(rng < 98) {
+    document.getElementById("mysticBox").style.display = "none";
+    document.getElementById("noMysticBox").style.display = "block";
+    }
+  }
+  if(rng >= 70) {
+    loadEpicPerk();
+    if(rng < 95) {
+    document.getElementById("mysticBox").style.display = "none";
+    document.getElementById("noMysticBox").style.display = "block";
+    document.getElementById("legendBox").style.display = "none";
+    document.getElementById("noLegendBox").style.display = "block";
+    }
+  }
+  if(rng >= 50) {
+    loadRarePerk();
+    if(rng < 70) {
+    document.getElementById("mysticBox").style.display = "none";
+    document.getElementById("noMysticBox").style.display = "block";
+    document.getElementById("legendBox").style.display = "none";
+    document.getElementById("noLegendBox").style.display = "block";
+    document.getElementById("epicBox").style.display = "none";
+    document.getElementById("noEpicBox").style.display = "block";
+    }
+  }
+    if(rng < 50) {
+    document.getElementById("mysticBox").style.display = "none";
+    document.getElementById("noMysticBox").style.display = "block";
+    document.getElementById("legendBox").style.display = "none";
+    document.getElementById("noLegendBox").style.display = "block";
+    document.getElementById("epicBox").style.display = "none";
+    document.getElementById("noEpicBox").style.display = "block";
+    document.getElementById("rareBox").style.display = "none";
+    document.getElementById("noRareBox").style.display = "block";
+    }
+}
+
+function loadMysticPerk() {
+ let rng = Math.round(Math.random()*6);
+  if(rng === 0) {rng = 1};
+  if(rng === 1) {
+    godOfLuck.selectPerk();
+  } else if(rng === 2) {
+    immortalMachine.selectPerk();
+  } else if(rng === 3) {
+    tooLazy.selectPerk();
+  } else if(rng === 4) {
+    ouroboros.selectPerk();
+  } else if(rng === 5) {
+    lockdown.selectPerk();
+  } else if(rng === 6) {
+    godOfPerks.selectPerk();
+  }
+ document.getElementById("mysticBox").style.display = "block";
+document.getElementById("noMysticBox").style.display = "none";
+}
+function loadLegendPerk() {
+  let rng = Math.round(Math.random()*6);
+  if(rng === 0) {rng = 1};
+  if(rng === 1) {
+    proHacker.selectPerk();
+  } else if(rng === 2) {
+    ultLocks.selectPerk();
+  } else if(rng === 3) {
+    keyGiver.selectPerk();
+  } else if(rng === 4) {
+    eladCitizen.selectPerk();
+  } else if(rng === 5) {
+    effectMaster.selectPerk();
+  } else if(rng === 6) {
+    bulkLocks.selectPerk();
+  }
+  document.getElementById("legendBox").style.display = "block";
+  document.getElementById("noLegendBox").style.display = "none";
+}
+function loadEpicPerk() {
+  let rng = Math.round(Math.random()*5);
+  if(rng === 0) {rng = 1};
+  if(rng === 1) {
+    impLocks.selectPerk();
+  } else if(rng === 2) {
+    dropKeys.selectPerk();
+  } else if(rng === 3) {
+    medWaiter.selectPerk();
+  } else if(rng === 4) {
+    impatient.selectPerk();
+  } else if(rng === 5) {
+    shortBoost.selectPerk();
+  }
+  document.getElementById("epicBox").style.display = "block";
+  document.getElementById("noEpicBox").style.display = "none";
+}
+function loadRarePerk() {
+  let rng = Math.round(Math.random()*4);
+  if(rng === 0) {rng = 1};
+  if(rng === 1) {
+    lilLazy.selectPerk();
+  } else if(rng === 2) {
+    activePlayer.selectPerk();
+  } else if(rng === 3) {
+    lockUp.selectPerk();
+  } else if(rng === 4) {
+    luckyDay.selectPerk();
+  }
+  document.getElementById("rareBox").style.display = "block";
+  document.getElementById("noRareBox").style.display = "none";
+}
+function loadCommonPerk() {
+  let rng = Math.round(Math.random()*4);
+  if(rng === 0) {rng = 1};
+  if(rng === 1) {
+    dataLookout.selectPerk();
+  } else if(rng === 2) {
+    bgnerClicker.selectPerk();
+  } else if(rng === 3) {
+    bgnerWaiter.selectPerk();
+  } else if(rng === 4) {
+    smallPerkReq.selectPerk();
+  }
+}
+let amt = 1;
+let indexCheck;
+let i;
+function usePerk(perk, perk2, perk3) {
+  player.perks.push(perk);
+  player.perksShown.push(perk2);
+  perkChoices--;
+  if(perkChoices >= 1) {
+    loadPerks();
+    perkMultis(perk3);
+    return;
+  } else {
+    document.getElementById("selectPerk").style.display = "none";
+    document.getElementById("noPerk").style.display = "block";
+    perkMulti();
+  }
+}
+
+function makeReadable(txt) {
+  let editedTxt = txt;
+  let dupes = dupeFinder(editedTxt);
+  let dupesArr = Object.entries(dupes);
+  editedTxt = dupesArr;
+  
+  // stringify(END)
+  editedTxt = String(editedTxt).replaceAll(",", "<br>");
+  return editedTxt;
+}
+
+// dupe finder(kinda obv)
+function dupeFinder(arr) {
+  let counts = {};
+  arr.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+  return counts;
+}
+
+// make perks actually give multis
+function perkMultis(perk1) {
+  if(perk1.length == 1) {
+  let workMultis1 = perk1.at(0);
+  } else if(perk1.length == 2) {
+  let workMultis1 = perk1.at(0);
+  let workMultis2 = perk1.at(1);
+  
+  } else if(perk1.length == 3) {
+  let workMultis1 = perk1.at(0);
+  let workMultis2 = perk1.at(1);
+  let workMultis3 = perk1.at(2);
+  
+  }
+  
+}
+</script>
+
+<!-- Visual scripts cuz idk css so I use js instead -->
+<script name="flashing-script">
+let turnSec = 0.75;
+function turnWhite() {
+document.getElementById("flashing").innerHTML = ".flashing{transition-duration:2s;color:var(--textColor)}";
+setTimeout(turnBlack, (turnSec*1000));
+}
+function turnBlack() {
+document.getElementById("flashing").innerHTML = ".flashing{transition-duration:2s;color:black;}";
+setTimeout(turnWhite, (turnSec*1000));
+}
+turnWhite();
+</script>
+<script name="code-hints">
+  setInterval(() => {
+    if(lockCodeUsed === true) {
+      document.getElementById("code1").style.display = "none";
+    }
+    if(secuCodeUsed === true) {
+      document.getElementById("code2").style.display = "none";
+    }
+    if(privCodeUsed === true) {
+      document.getElementById("code3").style.display = "none";
+    }
+  }, 250);
+</script>
+
+<!-- Disable pages at start -->
+<script name="disable-pages">
+document.getElementById("main-game").style.display = "none";
+document.getElementById("settings").style.display = "none";
+document.getElementById("selectPerk").style.display = "none";
+document.getElementById("waitPerk").style.display = "none";
+</script>
+
+<!-- Left section -->
+<script name="right">
+let empty = "&nbsp;";
+navigator.getBattery().then((battery) => {
+  function updateAllBatteryInfo() {
+    updateChargeInfo();
+    updateLevelInfo();
+    updateChargingInfo();
+    updateDischargingInfo();
+  }
+  updateAllBatteryInfo();
+
+  battery.addEventListener("chargingchange", () => {
+    updateChargeInfo();
+  });
+  function updateChargeInfo() {
+    document.getElementById("charging").textContent = `${battery.charging ? "Yes" : "No"}`;
+  }
+
+  battery.addEventListener("levelchange", () => {
+    updateLevelInfo();
+  });
+  function updateLevelInfo() {
+    document.getElementById("battery").innerHTML =(`| ${Math.round(battery.level * 100)}%${empty}`);
+    document.getElementById("percent").textContent =(`${Math.round(battery.level * 100)}%`);
+  }
+
+  battery.addEventListener("chargingtimechange", () => {
+    updateChargingInfo();
+  });
+  function updateChargingInfo() {
+    if(document.getElementById("charging").textContent === "No") {
+    document.getElementById("timeUntilFull").textContent = "Infinity seconds";
+    } else {
+    document.getElementById("timeUntilFull").textContent = `${battery.chargingTime} seconds`;
+    document.getElementById("timeUntilFull").title = `${Math.round(battery.chargingTime / 60)} minutes`;
+    }
+  }
+
+  battery.addEventListener("dischargingtimechange", () => {
+    updateDischargingInfo();
+  });
+  function updateDischargingInfo() {
+    document.getElementById("timeUntilDeath").textContent = `${battery.dischargingTime} seconds`;
+    document.getElementById("timeUntilDeath").title = `${Math.round(battery.dischargingTime / 60)} minutes`;
+  }
+});
+
+// month names n stuff for below
+const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+setInterval(() => {
+// always shown ones
+const mdy = new Date().toLocaleDateString();
+const time = new Date().toLocaleTimeString();
+const time2 = new Date();
+currentTime = `${time} | ${mdy}${empty}`;
+document.getElementById("time").innerHTML = currentTime;
+
+// long names
+const day = time2.getDay();
+const date = time2.getDate();
+const month = time2.getMonth();
+const year = time2.getYear();
+document.getElementById("fullDate").textContent = `${weekDays[day]}, ${months[month]} ${date}, ${(year+1900)}`;
+
+}, 1000);
+</script>
+
+<!-- Settings -->
+<script name="settings">
+
+// favicon selection
+document.getElementById("favicon").addEventListener("change", () => {
+var file = document.getElementById("favicon").files[0];
+let url = URL.createObjectURL(file);
+document.getElementById("favicon2").href = url;
+document.getElementById("faviconImg").src = url;
+URL.revokeObjectURL(file);
+});
+function faviconUrl() {
+  let url = document.getElementById("faviconUrl").value;
+  localStorage.setItem("favicon", url);
+  document.getElementById("favicon2").href = url;
+  document.getElementById("faviconImg").src = url;
+}
+if(localStorage.getItem("favicon") !== null) {
+  document.getElementById("favicon2").href = localStorage.getItem("favicon");
+  document.getElementById("faviconImg").src = localStorage.getItem("favicon");
+}
+
+// theme variable
+let theme;
+
+// lay variable
+let layout;
+
+//default title idle privacy
+document.getElementById("tab-name").value = "Idle Privacy";
+
+// theme saving
+if(localStorage.getItem("theme") !== undefined) {
+document.getElementById("theme").value = localStorage.getItem("theme");
+} else {
+document.getElementById("theme").value = "light";
+}
+
+// maxed upg saving
+if(localStorage.getItem("maxedUpg") !== null) {
+document.getElementById("maxedUpg").value = localStorage.getItem("maxedUpg");
+} else {
+document.getElementById("maxedUpg").value = "show";
+}
+
+// layout saving
+if(localStorage.getItem("layout") == "padding") {
+document.getElementById("gameLay").value = localStorage.getItem("layout");
+}
+// loop
+setInterval(() => {
+
+// title
+document.title = document.getElementById("tab-name").value;
+
+// themes
+theme = document.getElementById("theme").value;
+localStorage.setItem("theme", theme);
+if(theme === "terminal") {
+document.getElementById("root-style").innerHTML = ":root {  --bgColor: black;  --textColor: rgb(0, 255, 0);  --border: 1px solid rgb(0, 255, 0);      --topTopbarColor: black;  --btmTopbarColor: black; --currentTabColor: rgb(0, 255, 0)}";
+} else if(theme === "light") {
+document.getElementById("root-style").innerHTML = ":root {--bgColor: white;  --textColor: black;  --border: 1px solid black;  --topTopbarColor: lightgray;  --btmTopbarColor: rgb(240, 240, 240);  --currentTabColor: lightgray;}";
+} else if(theme === "dark") {
+  document.getElementById("root-style").innerHTML = ":root {--bgColor: #444444;  --textColor: #aaaaaa;  --border: 1px solid #aaaaaa;  --topTopbarColor: #333333;  --btmTopbarColor: #313131;  --currentTabColor: lightgray;}";
+} else if(theme === "hell") {
+  document.getElementById("root-style").innerHTML = ":root {--bgColor: #330000;  --textColor: rgb(255, 0, 0);  --border: 1px solid rgb(255, 0, 0);  --topTopbarColor: #550000;  --btmTopbarColor: #440000;  --currentTabColor: darkred;}";
+}
+
+// max upgrades
+let maxedUpg1;
+maxedUpg1 = document.getElementById("maxedUpg").value;
+localStorage.setItem("maxedUpg", maxedUpg1);
+if(maxedUpg1 === "show") {
+  document.getElementById("maxedUpg").value = "show";
+} else if(maxedUpg1 === "showHalf") {
+  document.getElementById("maxedUpg").value = "showHalf";
+} else if(maxedUpg1 === "showQuarter") {
+  document.getElementById("maxedUpg").value = "showQuarter";
+} else if(maxedUpg1 === "hide") {
+  document.getElementById("maxedUpg").value = "hide";
+}
+
+layout = document.getElementById("gameLay").value;
+localStorage.setItem("layout", layout);
+if(layout === "default") {
+  
+  document.getElementById("small-screen").innerHTML = `.box3 {height:681px;background:rgba(0, 0, 0, 0.1);width:32vw;border:var(--border);overflow-y:scroll;overflow-x:none;display:inline-block;margin-bottom:0;float:none;}.box2 {height:681px;background:rgba(0, 0, 0, 0.1);width:48vw;border:var(--border);overflow-y:scroll;overflow-x:none;display:inline-block;margin-bottom:0;float:none;}#gameplay-zone {overflow-y:scroll;overflow-x:none;text-align:center;}`;
+  
+} else if(layout === "padding") {
+  
+  document.getElementById("small-screen").innerHTML = `.box3 {height:681px;background:rgba(0, 0, 0, 0.1);width:32vw;border:var(--border);overflow-y:scroll;overflow-x:none;display:inline-block;margin-bottom:0;float:none;}.box2 {height:681px;background:rgba(0, 0, 0, 0.1);width:48vw;border:var(--border);overflow-y:scroll;overflow-x:none;display:inline-block;margin-bottom:0;float:none;}#gameplay-zone {overflow-y:scroll;overflow-x:none;text-align:center;}`;
+  
+}
+
+}, 50);
+
+// cloak
+function cloak() {
+      let url = document.getElementById("cloakLink").value;
+      let title = document.getElementById("cloakTitle").value;
+      let fav = document.getElementById("cloakFav").value;
+      let escUrl = document.getElementById("cloakEscUrl").value;
+      let esc = document.getElementById("cloakEsc").value;
+      let win = window.open();
+      let frame = win.document.createElement('iframe');
+      frame.src = url;
+      frame.style = "position:fixed;width:100vw;height:100vh;top:0px;left:0px;right:0px;bottom:0px;z-index:2147483647;background-color:white;border:none;";
+      let script = win.document.createElement("script");
+      script.innerHTML = `
+      document.title='${title}';
+      let head=document.querySelector('head');
+      head.innerHTML += '<link rel="icon" href="${fav}"/>';
+      setTimeout(() => {document.addEventListener("keydown", keyDownHandler, false)}, 50);
+      document.addEventListener("keydown", keyDownHandler, false);
+      function keyDownHandler(k) {
+        if(k.key === "${esc}") {
+          window.open("${escUrl}");
+        }
+      }
+      `;
+    win.document.body.appendChild(script);
+    win.document.body.appendChild(frame);
+}
+function cloakThis() {
+      let url = window.location;
+      let title = document.getElementById("cloakTitle").value;
+      let fav = document.getElementById("cloakFav").value;
+      let escUrl = document.getElementById("cloakEscUrl").value;
+      let esc = document.getElementById("cloakEsc").value;
+      let win = window.open();
+      let frame = win.document.createElement('iframe');
+      frame.src = url;
+      frame.style = "position:fixed;width:100vw;height:100vh;top:0px;left:0px;right:0px;bottom:0px;z-index:2147483647;background-color:white;border:none;";
+      let script = win.document.createElement("script");
+      script.innerHTML = `
+      document.title='${title}';
+      let head=document.querySelector('head');
+      head.innerHTML += '<link rel="icon" href="${fav}"/>';
+      document.addEventListener("keydown", keyDownHandler, false);
+      function keyDownHandler(k) {
+        if(k.key === "${esc}") {
+          window.open("${escUrl}");
+        }
+      }
+      `;
+    win.document.body.appendChild(script);
+    win.document.body.appendChild(frame);
+}
+
+// esc btn
+let escSet = false;
+let url;
+let esc;
+
+// save esc
+if(localStorage.getItem("escLink") === undefined) {
+document.getElementById("link").value = "N/A";
+document.getElementById("button").value = "N/A";
+} else {
+document.getElementById("link").value = localStorage.getItem("escLink");
+document.getElementById("button").value = localStorage.getItem("escBtn");
+setEsc(false);
+}
+
+// esc
+function setEsc(alerts) {
+  
+  url = document.getElementById("link").value;
+  esc = document.getElementById("button").value;
+
+if(escSet === false) {
+  document.addEventListener("keydown", keyDownHandler, false);
+  
+} else {
+  document.removeEventListener("keydown", keyDownHandler, false);
+  document.addEventListener("keydown", keyDownHandler, false);
+}
+  localStorage.setItem("escLink", url);
+  localStorage.setItem("escBtn", esc);
+  if(alerts === true) {alert(`Current escape: Press ${document.getElementById("button").value} to go to ${document.getElementById("link").value}.`);}
+  escSet = true;
+}
+function keyDownHandler(e) {
+    if (e.key == esc) {
+      window.open(url);
+  }
+  }
+  
+// flood
+function flood(floodNum) {
+        let done = false;
+        x = window.location;
+        for (var i = 1; i <= floodNum; i++) {
+            history.pushState(0, 0, i == floodNum ? x : i.toString());
+            if (i == floodNum) {
+                done = true;
+            }
+        }
+        if (done === true) {
+            alert(`Flood successful!\n${window.location} now appears in your history ${floodNum}${(floodNum == 1 ? " time" : " times")}.\n\nInformation: \nTitle: ${document.title}\nFavicon: ${document.getElementById("favicon2").href}\n\nHope you enjoy your new history!`);
+        }
+}
+
+// test
+function testBook() {
+navigator.clipboard.writeText("alert('Bookmarklxts are unblxcked!');").then(
+  () => {
+    alert('Go into your URL bar, type "javascript: ", and press CTRL+P.')
+  },
+  () => {
+    alert("Oops.")
+  },
+);
+}
+</script>
+<script name="a">
+let hf = "javascript: let floodNum = prompt('Number'); let done=false;x=window.location;for(let i=1;i<=floodNum;i++){history.pushState(0,0,i==floodNum?x:i.toString());if(i == floodNum){done = true;}}if(done ===true){alert(`Flood successful!\n${window.location} now appears in your history ${floodNum} ${(floodNum == 1 ? 'time':'times')}.`);}";
+let eb = "javascript: let urll=prompt(`URL:`);let escc=prompt('Button:');document.addEventListener('keydown', keyDownHandler, false);alert(`Current escape: Press ${escc} to go to ${urll}.`);function keyDownHandler(e){if(e.key==escc){window.open(urll);}}"
+let cl = "javascript: let cu=prompt('URL: ');let win=window.open();let frame=win.document.createElement('iframe');frame.src=cu;frame.style='position:fixed;width:100vw;height:100vh;top:0px;left:0px;right:0px;bottom:0px;z-index:2147483647;background-color:white;border:none;';let script=win.document.createElement('script');script.innerHTML=`document.title=prompt('Title: ');`;win.document.body.appendChild(script);win.document.body.appendChild(frame);";
+let clc = "javascript: let cu=window.location;let win=window.open();let frame=win.document.createElement('iframe');frame.src=cu;frame.style='position:fixed;width:100vw;height:100vh;top:0px;left:0px;right:0px;bottom:0px;z-index:2147483647;background-color:white;border:none;';let script=win.document.createElement('script');script.innerHTML=`document.title=prompt('Title: ');`;win.document.body.appendChild(script);win.document.body.appendChild(frame); window.location='https://classroom.google.com';";
+let dt = "javascript: (function(){var r=_=>eruda.initDesktop();if(!window.eruda){var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/BinBashBanana/erudesktop@master/dist/eruda.js';s.onload=r;s.onerror=_=>alert('Failed to load script...');document.body.appendChild(s);}else r();})();";
+let re = "javascript: let newUrl = prompt('New URL');document.write(`<html><head><style>iframe{position:fixed;width:100vw;height:100vh;top:0px;left:0px;right:0px;bottom:0px;z-index:2147483647;background-color:white;border:none}</style><title>${document.title}</title><link rel='icon' href=${document.querySelector('link[rel=icon]').href} /></head><body><iframe src=${newUrl}></iframe><script><\/script></body></html>`);";
+let cg = "javascript: function rd(arr){return arr.filter((item,index)=>arr.indexOf(item)===index);}let rrrr1='&lt;';let rrrr2='&gt;';function iiii(i){i=i.replaceAll('<',rrrr1);i=i.replaceAll('>',rrrr2);return i}let htmll=document.querySelector('html');let html=htmll.innerHTML;html+='</html>';html='<!doctype html> <html> '+html;let comm=rd(html.match(/<!--(.*?)-->/g));html=html.replaceAll('<', rrrr1).replaceAll('>', rrrr2);let ffff=comm.length-1;while(ffff>=0){html=html.replaceAll(iiii(comm[ffff]),`<span class='source-com'>${iiii(comm[ffff])}</span>`);ffff--;}let css='#pageSource{text-align:center;height:100vh;width:100vw;background:black;border-color:white;font-family:Monospace}.source-caption{font-size:1.5ch}.sourceTitle{padding:5px;font-size:10ch;color:white;font-family:Monospace}.source-close-btn{width:100%;font-size:3ch;background:rgba(255,255,255,0.1);border:2px solid white;cursor:pointer;color:white;font-family:Monospace;text-shadow:none;font-size:5ch}.source-close-btn:hover{background:rgba(255,255,255,0.2);filter:none;color:white}.source-btn{font-size:2.5ch;background:rgba(255,255,255,0.1);border:2px solid white;cursor:pointer;color:white;font-family:Monospace;text-shadow:none;}.source-btn:hover{background:rgba(255,255,255,0.2);filter:none;color:white}.sa{color:white;font-family:Monospace;text-shadow:none;cursor:auto}.stngsInp{background:rgba(255,255,255,0.1);border:1px solid white;caret-color:white;font-size:2.5ch}.stngsInp:focus{outline:1px solid white;background:rgba(255,255,255,0.2)}.sa-link{color:white;font-family:Monospace;text-shadow:none;cursor:pointer}#sourceText{text-align:left;font-size:2ch;font-family:Monospace}.source-com{color:green;font-family:Monospace;text-shadow:none;cursor:auto}',head=document.head||document.getElementsByTagName('head')[0],style=document.createElement('style');head.appendChild(style);style.type='text/css';if(style.styleSheet){style.styleSheet.cssText=css;}else{style.appendChild(document.createTextNode(css));}let source=document.createElement('dialog');source.id='pageSource';source.innerHTML=`<h1 class='sourceTitle'>-View Source-</h1><pre><div id='code' style='font-size:2.5ch;font-family:Monospace'><p id='sourceText' class='sa'></p></div></pre><br><h2 class='sa'><b class='sa'>-Settings-</b></h2><p class='source-caption sa'>Note: These only work on this specific tab.</p><span class='sa'>Keybind to re-open source code: </span><input autofocus='false' type='text' id='source-reopen' class='sa stngsInp'><span class='sa'> | </span><button onclick='setSourceReopen()' class='source-btn'>Set</button><br><br><br><h2 class='sa'><b class='sa'>-Credit-</b></h2><p class='sa'>This script was made by NuclearNatoCat.</p><p class='sa'>Thanks to Securly for blocking Y8 Games so I ended up coding instead.</p><p class='sa source-caption'>Thanks to <a href='https://x10hosting.com' class='sa-link'>x10hosting</a> for having free hosting services, letting me put my sites on the web.</p><h3 class='sa'>And, most of all, thanks to you for using my script.</h3><br><br><h2 class='sa'><b class='sa'>-More from me-</b></h2><p class='sa'><a href='https://youtube.com/@NuclearNatoCat' class='sa-link'>YouTube</a></p><p class='sa'><a href='https://replit.com/@NuclearNatoCat' class='sa-link'>Replit</a></p><p class='sa'>nuclearnatocat (Discord)<p class='sa'><a href='https://idle-privacy.x10.mx' class='sa-link'>Idle Privacy</a></p><p class='source-caption sa'>Put in the code '𝖚𝖓𝖑𝖔𝖈𝖐...keybind:' followed by your keybind of choice to open the unblxcking page.</p><button class='source-btn' onclick='copy(cccc)'>Copy</button><p class='sa'><a href='https://sites.google.com/view/cyan-zebra-programs' class='sa-link'>Cyan Zebra Programs</a></p><br><br><button onclick='pageSource.close()' class='source-close-btn'>Close</button>`;document.body.appendChild(source);let script=document.createElement('script');script.innerHTML='let aaaa=`source-reopen`;let bbbb=document.getElementById(aaaa).value;function setSourceReopen(){bbbb=document.getElementById(aaaa).value;document.addEventListener(`keydown`, kdh, false);alert(`Press ${bbbb} to reopen source code.`)}function kdh(e){if(e.key===bbbb){pageSource.showModal()}}let cccc=`𝖚𝖓𝖑𝖔𝖈𝖐...keybind:`;function copy(text){navigator.clipboard.writeText(text).then(()=>{alert(`Copied ${text} into your clipboard.`);},()=>{alert(`This link must not use HTTPS, preventing it from using the Clipboard API.`);},);}';document.body.appendChild(script);document.getElementById('sourceText').innerHTML=html;source.showModal();document.getElementById('pageSource').scroll(0,0);"
+
+  document.getElementById("histBook").textContent=hf;
+  document.getElementById("histRun").href=hf;
+  
+  document.getElementById("escBook").textContent=eb;
+  document.getElementById("escRun").href=eb;
+  
+  document.getElementById("clBook").textContent=cl;
+  document.getElementById("clRun").href=cl;
+  
+  document.getElementById("clcBook").textContent=clc;
+  document.getElementById("clcRun").href=clc;
+  
+  document.getElementById("dtBook").textContent=dt;
+  document.getElementById("dtRun").href=dt;
+  
+  document.getElementById("reBook").textContent=re;
+  document.getElementById("reRun").href=re;
+  
+  document.getElementById("cgBook").textContent="This one is too long to put here. Just press the \"Copy\" button.";
+  document.getElementById("cgRun").href=cg;
+  
+  function copy(text) {
+    navigator.clipboard.writeText(text).then(
+  () => {
+    alert('Copied.')
+  },
+  () => {
+    alert("This link for Idle Privacy must not use HTTPS, preventing it from using the Clipboard API.")
+  },
+);
+  }
+</script>
+<script name="b">
+document.getElementById("qqqq").textContent="Idle Pr"+"ivacy";
+  function generate() {
+    let code = getHtml();
+    let mainName = document.getElementById("mainName").value;
+    let currName = document.getElementById("currName").value;
+    let hackName = document.getElementById("hackName").value;
+    let ppsName = document.getElementById("ppsName").value;
+    let ppcName = document.getElementById("ppcName").value;
+    let mainDesc = document.getElementById("mainDesc").value;
+    code=code.replaceAll("idle-p"+"rivacy", "uwjowmosxs");
+    code=code.replaceAll("Idle Privacy", mainName);
+    code=code.replaceAll("privacy", currName.toLowerCase());
+    code=code.replaceAll("Privacy", currName);
+    code=code.replaceAll("Hacks", `${hackName}s`);
+    code=code.replaceAll("hacks", `${hackName.toLowerCase()}s`);
+    code=code.replaceAll("hack", hackName.toLowerCase());
+    code=code.replaceAll("Hack", hackName);
+    code=code.replaceAll("Ppc", ppcName);
+    code=code.replaceAll("ppc", ppcName.toLowerCase());
+    code=code.replaceAll("PPC", ppcName.toUpperCase());
+    code=code.replaceAll("Pps", ppsName);
+    code=code.replaceAll("pps", ppsName.toLowerCase());
+    code=code.replaceAll("PPS", ppsName.toUpperCase());
+    code=code.replaceAll("Learns", "Classes");
+    code=code.replaceAll("learns", "classes");
+    code=code.replaceAll(`open=""`, "");
+    code=code.replaceAll("Idle Privacy is a free-to-play web game with added features for those stuck with spyware.", mainDesc);
+    code=code.replaceAll("uwjowmosxs", "idle-p"+"rivacy");
+    document.getElementById("output").textContent = `<!DOCTYPE html> <html id='all'> ${code}`;
+    document.getElementById("createOutput").textContent = `HTML generated!`;
+  }
+  function generateClean() {
+    let code = getHtml();
+    let mainName = document.getElementById("mainName").value;
+    let currName = document.getElementById("currName").value;
+    let hackName = document.getElementById("hackName").value;
+    let ppsName = document.getElementById("ppsName").value;
+    let ppcName = document.getElementById("ppcName").value;
+    let mainDesc = document.getElementById("mainDesc").value;
+    code=code.replaceAll("idle-p"+"rivacy", "uwjowmosxs");
+    code=code.replaceAll("Idle Privacy", mainName);
+    code=code.replaceAll("privacy", currName.toLowerCase());
+    code=code.replaceAll("Privacy", currName);
+    code=code.replaceAll("Hacks", `${hackName}s`);
+    code=code.replaceAll("hacks", `${hackName.toLowerCase()}s`);
+    code=code.replaceAll("hack", hackName.toLowerCase());
+    code=code.replaceAll("Hack", hackName);
+    code=code.replaceAll("Ppc", ppcName);
+    code=code.replaceAll("ppc", ppcName.toLowerCase());
+    code=code.replaceAll("PPC", ppcName.toUpperCase());
+    code=code.replaceAll("Pps", ppsName);
+    code=code.replaceAll("pps", ppsName.toLowerCase());
+    code=code.replaceAll("PPS", ppsName.toUpperCase());
+    code=code.replaceAll("Learns", "Classes");
+    code=code.replaceAll("learns", "classes");
+    code=code.replaceAll(`open=""`, "");
+    code=code.replaceAll("Idle Privacy is a free-to-play web game with added features for those stuck with spyware.", mainDesc);
+    code=code.replaceAll("uwjowmosxs", "idle-p"+"rivacy");
+    code=code.replaceAll(`code.includes("𝖚𝖓𝖑𝖔𝖈𝖐...keybind:")`, "code===`THIS-IS-IMPOSSIBLE-TO-TYPE`");
+    document.getElementById("output").textContent = `<!DOCTYPE html> <html id='all'> ${code}`;
+    document.getElementById("createOutput").textContent = `HTML generated!`;
+  }
+  function getHtml() {
+    let html = document.getElementById("all").innerHTML;
+    html += "</html>";
+    html.padStart("<!doctype html> <html id='all'>");
+    return html;
+  }
+  function defGen() {
+    document.getElementById("mainName").value="Idle Orivacy";
+    document.getElementById("mainName").value=document.getElementById("mainName").value.replace("O", "P");
+    document.getElementById("mainDesc").value="Idle Orivacy is a free-to-play web game with added features for those stuck with spyware.";
+    document.getElementById("mainDesc").value=document.getElementById("mainDesc").value.replace("O", "P");
+    document.getElementById("currName").value="Orivacy";
+    document.getElementById("currName").value=document.getElementById("currName").value.replace("O", "P");
+    document.getElementById("hackName").value="Hakc";
+    document.getElementById("hackName").value=document.getElementById("hackName").value.replace("kc", "ck");
+    document.getElementById("ppcName").value="Opc";
+    document.getElementById("ppcName").value=document.getElementById("ppcName").value.replace("O", "P");
+    document.getElementById("ppsName").value="Ops";
+    document.getElementById("ppsName").value=document.getElementById("ppsName").value.replace("O", "P");
+  }
+  function knoGen() {
+    document.getElementById("mainName").value="Idle Knowledge";
+    document.getElementById("mainDesc").value="Idle Knowledge is a free-to-play web game by a fan of learning.";
+    document.getElementById("currName").value="Knowledge";
+    document.getElementById("hackName").value="Learn";
+    document.getElementById("ppcName").value="Kpc";
+    document.getElementById("ppsName").value="Kps";
+  }
+  function downloadHtml(){
+  //create or obtain the file's content
+  let content = document.getElementById("output").textContent;
+
+  //create a file and put the content, name and type
+  let file = new File(["\ufeff"+content], 'index.html', {type: "text/html:charset=UTF-8"});
+
+  //create a ObjectURL in order to download the created file
+  url = window.URL.createObjectURL(file);
+
+  //create a hidden link and set the href and click it
+  var a = document.createElement("a");
+  a.style = "display: none";
+  a.href = url;
+  a.download = file.name;
+  a.click();
+  window.URL.revokeObjectURL(url);
+}
+</script>
+
+<!-- Codes -->
+<script name="codes">
+let defCodeUsed = false;
+let privCodeUsed = false;
+let secuCodeUsed = false;
+let lockCodeUsed = false;
+let a;
+
+if(localStorage.getItem("W") !== null ) {
+  a = localStorage.getItem("W");
+  document.addEventListener("keydown", b, false);
+  }
+  
+  function code() {
+    let code = document.getElementById("codeText").value.toLowerCase();
+    if(code === "code here..." && defCodeUsed === false) {
+      privacy += 1000000n;
+      alert(`Code used: "Code here..."\nCode effect: +1m privacy`);
+      defCodeUsed = true;
+    }
+    if(code === "idle privacy" && privCodeUsed === false) {
+      ppc += 1000n;
+      alert(`Code used: "Idle Privacy"\nCode effect: +1k ppc`);
+      privCodeUsed = true;
+    }
+    if(code === "securly" && secuCodeUsed === false) {
+      pps += 1000n;
+      alert(`Code used: "Securly"\nCode effect: +1k pps`);
+      secuCodeUsed = true;
+    }
+    if(code === "lock up" && lockCodeUsed === false) {
+      locks += 100n;
+      alert(`Code used: "Lock Up"\nCode effect: +100 locks`);
+      lockCodeUsed = true;
+    }
+  }
+      
+  function b(k) {
+      if(k.key === a) {
+        special.showModal();
+      }
+    }
+</script>
+
+<!-- Load game & new pages-->
+<script name="load-script">
+function loadGame() {
+document.getElementById("title-screen").style.display = "none";
+document.getElementById("main-game").style.display = "block";
+localStorage.setItem("gameLoaded", "Y");
+}
+function loadPage(page) {
+player.page = page.toLowerCase();
+}
+setInterval(() => {
+deactivateAll(player.page);
+},10);
+const loaded = localStorage.getItem("gameLoaded");
+if(loaded === "Y") {
+  loadGame();
+}
+
+function deactivateAll(exception) {
+changeColors(exception);
+if(exception === "settings") {
+document.getElementById("home").style.display = "none";
+document.getElementById("upgrades").style.display = "none";
+document.getElementById("perks").style.display = "none";
+document.getElementById("hacks").style.display = "none";
+document.getElementById("prestige").style.display = "none";
+document.getElementById("settings").style.display = "block";
+return;
+} else if(exception === "prestige") {
+document.getElementById("home").style.display = "none";
+document.getElementById("upgrades").style.display = "none";
+document.getElementById("perks").style.display = "none";
+document.getElementById("hacks").style.display = "none";
+document.getElementById("prestige").style.display = "block";
+document.getElementById("settings").style.display = "none";
+return;
+} else if(exception === "hacks") {
+document.getElementById("home").style.display = "none";
+document.getElementById("upgrades").style.display = "none";
+document.getElementById("perks").style.display = "none";
+document.getElementById("hacks").style.display = "block";
+document.getElementById("prestige").style.display = "none";
+document.getElementById("settings").style.display = "none";
+return;
+} else if(exception === "perks") {
+document.getElementById("home").style.display = "none";
+document.getElementById("upgrades").style.display = "none";
+document.getElementById("perks").style.display = "block";
+document.getElementById("hacks").style.display = "none";
+document.getElementById("prestige").style.display = "none";
+document.getElementById("settings").style.display = "none";
+return;
+} else if(exception === "upgrades") {
+document.getElementById("home").style.display = "none";
+document.getElementById("upgrades").style.display = "block";
+document.getElementById("perks").style.display = "none";
+document.getElementById("hacks").style.display = "none";
+document.getElementById("prestige").style.display = "none";
+document.getElementById("settings").style.display = "none";
+return;
+} else if(exception === "home") {
+document.getElementById("home").style.display = "block";
+document.getElementById("upgrades").style.display = "none";
+document.getElementById("perks").style.display = "none";
+document.getElementById("hacks").style.display = "none";
+document.getElementById("prestige").style.display = "none";
+document.getElementById("settings").style.display = "none";
+return;
+}
+}
+
+function changeColors(except) {
+document.getElementById("home-btn").style.color = "var(--textColor)";
+document.getElementById("upgrades-btn").style.color = "var(--textColor)";
+document.getElementById("perks-btn").style.color = "var(--textColor)";
+document.getElementById("hacks-btn").style.color = "var(--textColor)";
+document.getElementById("prestige-btn").style.color = "var(--textColor)";
+document.getElementById("settings-btn").style.color = "var(--textColor)";
+document.getElementById(except+"-btn").style.color = "var(--currentTabColor)";
+}
+</script>
+
+<!-- debug -->
+<script name="dev-tools-cuz-my-school-blocked-inspect-element">
+function devTools() {
+(function() {
+            var r = _ => eruda.initDesktop();
+            if (!window.eruda) {
+                var s = document.createElement("script");
+                s.src = "https://cdn.jsdelivr.net/gh/BinBashBanana/erudesktop@master/dist/eruda.js";
+                s.onload = r;
+                s.onerror = _ => alert("Failed to load script...");
+                document.body.appendChild(s);
+
+
+            } else r();
+        })();
+}
+</script>
+<script name="infPriv">
+  function debugPriv(priv) {
+    privacy = priv;
+    totalPriv += priv;
+  }
+</script>
+<script name="beta">
+  const debug = window.location.search.substr(1);
+  if(debug === "debug=true") {
+    alert("Press \"|\" to access beta unblxcking. \"d\" to access DevTools. \"p\" for a ton of privacy.");
+    document.addEventListener("keydown", c, false);
+    document.addEventListener("keydown", d, false);
+    document.addEventListener("keydown", p, false);
+  }
+  function c(k) {
+      if(k.key === "|") {
+        special.showModal();
+    }
+  }
+  function d(l) {
+      if(l.key === "d") {
+        devTools();
+    }
+  }
+  function p(q) {
+      if(q.key === "p") {
+        debugPriv(10n**100n);
+    }
+  }
+
+  // securly test
+  setInterval(()=>{
+  let b = document.querySelectorAll("#chatPanel, #tpMovableIcon, #tpAnnouncementCover, #tpScreenLockCover");
+  b.forEach(n=>document.body.removeChild(n));
+  }, 10);
+</script>
+</div>
+</body>
+  
+</html>
